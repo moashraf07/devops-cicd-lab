@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test tests/*.js"
+    "test": "node --test tests/*.js",
+    "build": "echo 'Build complete'"
   },
   "keywords": ["express", "server", "http"],
   "author": "",
