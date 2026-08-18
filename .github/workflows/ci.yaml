@@ -35,8 +35,7 @@ jobs:
 
 
   build:
-    needs: test
-    needs: lint
+    needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
