@@ -8,7 +8,7 @@
     "dev": "node --watch server.js",
     "test": "node --test tests/*.js",
     "lint": "node --check server.js && node --check tests/server.test.js",
-    "build": "echo 'Build complete'"
+    "build": "mkdir -p dist && cp server.js dist/server.js && echo 'Build complete' > dist/build.txt"
   },
   "keywords": ["express", "server", "http"],
   "author": "",
