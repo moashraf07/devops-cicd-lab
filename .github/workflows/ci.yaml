@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      NOD_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,6 +19,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Test Node Env
+        run: echo "Env is $NOD_ENV"
 
       - name: Test Secret
         env:
@@ -28,6 +33,7 @@ jobs:
 
       - name: Run tests
         run: npm test
+
   lint:
     runs-on: ubuntu-latest
     steps:
