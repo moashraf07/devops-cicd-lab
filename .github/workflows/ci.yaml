@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: 20
 
+      - name: Test Secret
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: echo "Secret is configured"
+
       - name: Install dependencies
         run: npm install
 
