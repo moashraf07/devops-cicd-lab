@@ -73,7 +73,19 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-build
-          path: dist/  
+          path: dist/
+
+  docker-build:
+    needs:
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t devops-cicd-lab:ci .
     
 
          
