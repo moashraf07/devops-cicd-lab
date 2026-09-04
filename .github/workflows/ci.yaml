@@ -93,6 +93,8 @@ jobs:
         run: docker build -t devops-cicd-lab:ci .
       - name: Tag Docker image
         run: docker tag devops-cicd-lab:ci moashraf07/devops-cicd-lab:ci  
+      - name: Push Docker image
+        run: docker push moashraf07/devops-cicd-lab:ci  
     
 
          
