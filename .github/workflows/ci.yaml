@@ -91,6 +91,8 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t devops-cicd-lab:ci .
+      - name: Tag Docker image
+        run: docker tag devops-cicd-lab:ci moashraf07/devops-cicd-lab:ci  
     
 
          
