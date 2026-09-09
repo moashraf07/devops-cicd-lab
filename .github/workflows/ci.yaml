@@ -103,7 +103,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            echo "Connected to EC2 successfully"
+            echo "Connected to EC2 successfullyy"
             docker --version
     
 
