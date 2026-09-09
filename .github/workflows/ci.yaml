@@ -94,7 +94,17 @@ jobs:
       - name: Tag Docker image
         run: docker tag devops-cicd-lab:ci moashraf07/devops-cicd-lab:ci  
       - name: Push Docker image
-        run: docker push moashraf07/devops-cicd-lab:ci  
+        run: docker push moashraf07/devops-cicd-lab:ci
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.EC2_PORT }}
+          script: |
+            echo "Connected to EC2 successfully"
+            docker --version
     
 
          
