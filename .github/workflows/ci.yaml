@@ -96,7 +96,7 @@ jobs:
         run: docker tag devops-cicd-lab:ci moashraf07/devops-cicd-lab:ci  
       - name: Push Docker image
         run: docker push moashraf07/devops-cicd-lab:ci
-      - name: Test SSH connection
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -104,8 +104,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            echo "Connected to EC2 successfullyyy"
-            docker --version
+            docker pull moashraf07/devops-cicd-lab:ci
+            docker stop devops-app || true
+            docker rm devops-app || true
+            docker run -d --name devops-app -p 3000:3000 moashraf07/devops-cicd-lab:ci
     
 
          
