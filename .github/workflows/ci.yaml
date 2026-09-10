@@ -91,11 +91,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t devops-cicd-lab:v1 .
+        run: docker build -t devops-cicd-lab:v2 .
       - name: Tag Docker image
-        run: docker tag devops-cicd-lab:v1 moashraf07/devops-cicd-lab:v1
+        run: docker tag devops-cicd-lab:v2 moashraf07/devops-cicd-lab:v2
       - name: Push Docker image
-        run: docker push moashraf07/devops-cicd-lab:v1
+        run: docker push moashraf07/devops-cicd-lab:v2
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.2
         with:
@@ -104,11 +104,11 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            docker pull moashraf07/devops-cicd-lab:v1
+            docker pull moashraf07/devops-cicd-lab:v2
             docker stop devops-app || true
             docker rm devops-app || true
             docker ps -q --filter publish=3000 | xargs -r docker rm -f
-            docker run -d --name devops-app -p 3000:3000 moashraf07/devops-cicd-lab:v1
+            docker run -d --name devops-app -p 3000:3000 moashraf07/devops-cicd-lab:v2
             sleep 5
             curl -f http://localhost:3000/api/status
     
